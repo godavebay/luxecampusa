@@ -5,24 +5,20 @@ export default async function handler(req, res) {
     return res.status(405).send("Method not allowed");
   }
 
+  const { priceId } = req.body;
+
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      mode: "payment",
+      mode: "subscription",
       line_items: [
         {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: "LuxeCampUSA Sponsor Tier 1",
-            },
-            unit_amount: 2000,
-          },
+          price: priceId,
           quantity: 1,
         },
       ],
       success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/thank-you`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/sponsor`,
     });
 
     res.status(200).json({ url: session.url });
