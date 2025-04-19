@@ -1,3 +1,3 @@
 # LuxeCampUSA
 
-Luxury campground directory.
+Luxury campground directory with Stripe sponsor checkout.
