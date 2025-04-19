@@ -1,0 +1,3 @@
+# LuxeCampUSA
+
+Luxury campground directory.
