@@ -9,8 +9,7 @@ export default function Home() {
       </Head>
       <nav className="navbar">
         <div className="nav-content">
-          <a href="#hero">Home</a>
-          <a href="#intro">Intro</a>
+          <a href="#about">About</a>
           <a href="#features">Features</a>
           <a href="#contact">Contact</a>
         </div>
@@ -18,7 +17,7 @@ export default function Home() {
       <div className="homepage">
         <section id="hero" className="hero"></section>
 
-        <section id="intro" className="intro-text">
+        <section id="about" className="intro-text">
           <h1>Discover America’s Most Exclusive Campgrounds & Glamping Retreats</h1>
           <p>Curated for luxury. Driven by experience. Built for adventure.</p>
           <a href="#features" className="btn yellow-btn">Explore Listings</a>
