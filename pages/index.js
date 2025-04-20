@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white font-sans">
       {/* Hero Section */}
-      <section className="h-screen flex flex-col items-center justify-center text-center px-4 bg-[url('https://images.unsplash.com/photo-1621961458255-d0a5c1303613')] bg-cover bg-center">
+      <section className="h-screen flex flex-col items-center justify-center text-center px-4 bg-[url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1740&q=80')] bg-cover bg-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-4 max-w-3xl leading-tight">Discover America’s Most Exclusive Campgrounds & Glamping Retreats</h1>
         <p className="text-lg md:text-xl mb-6 max-w-xl text-white/80">Curated for luxury. Driven by experience. Built for adventure.</p>
         <Link href="/listings" className="bg-white text-black px-6 py-3 rounded-full text-lg font-semibold hover:bg-gold transition">Explore Listings</Link>
@@ -30,13 +30,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories */}
+      {/* Categories with Real Images */}
       <section className="bg-[#111] text-white px-6 py-16">
         <h2 className="text-3xl md:text-4xl font-semibold text-center mb-8">Experience It All</h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {["Luxury RV Resorts", "Glamping Domes", "Tiny Homes", "Treehouses"].map((category, i) => (
-            <div key={i} className="bg-[#1c1c1c] p-6 rounded-xl shadow-md text-center hover:bg-gold hover:text-black transition">
-              <h3 className="text-lg font-semibold">{category}</h3>
+          {[
+            { title: "Luxury RV Resorts", img: "https://images.unsplash.com/photo-1601568871423-66f1107d5c9e?auto=format&fit=crop&w=800&q=80" },
+            { title: "Glamping Domes", img: "https://images.unsplash.com/photo-1625181438753-29efcfa78957?auto=format&fit=crop&w=800&q=80" },
+            { title: "Tiny Homes", img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80" },
+            { title: "Treehouses", img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80" }
+          ].map((cat, i) => (
+            <div key={i} className="rounded-xl overflow-hidden shadow-md group">
+              <img src={cat.img} alt={cat.title} className="w-full h-40 object-cover group-hover:opacity-75 transition" />
+              <div className="p-4 text-center bg-[#1c1c1c] group-hover:bg-gold group-hover:text-black transition">
+                <h3 className="text-lg font-semibold">{cat.title}</h3>
+              </div>
             </div>
           ))}
         </div>
@@ -61,13 +69,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="bg-[#000] text-white px-6 py-20 text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-6">Join the LuxeCamp Movement</h2>
-        <p className="text-lg mb-8 text-white/80">Own a luxury campground or glamping site? Get featured. Want to sponsor? Partner with us.</p>
-        <div className="flex justify-center gap-4 flex-wrap">
-          <Link href="/submit-listing" className="bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-gold transition">Submit a Listing</Link>
-          <Link href="/sponsor" className="border border-white px-6 py-3 rounded-full font-medium hover:bg-white hover:text-black transition">Become a Sponsor</Link>
+      {/* Call to Action with Background */}
+      <section className="bg-[url('https://images.unsplash.com/photo-1502210555164-5d73a1b1d9fb?auto=format&fit=crop&w=1740&q=80')] bg-cover bg-center text-white px-6 py-20 text-center">
+        <div className="bg-black/60 p-10 rounded-xl max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6">Join the LuxeCamp Movement</h2>
+          <p className="text-lg mb-8 text-white/80">Own a luxury campground or glamping site? Get featured. Want to sponsor? Partner with us.</p>
+          <div className="flex justify-center gap-4 flex-wrap">
+            <Link href="/submit-listing" className="bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-gold transition">Submit a Listing</Link>
+            <Link href="/sponsor" className="border border-white px-6 py-3 rounded-full font-medium hover:bg-white hover:text-black transition">Become a Sponsor</Link>
+          </div>
         </div>
       </section>
 
