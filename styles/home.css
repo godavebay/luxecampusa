@@ -7,7 +7,7 @@
 }
 
 .hero {
-  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1740&q=80') no-repeat center center;
+  background: url('/grand-cabin-hero.jpg') no-repeat center center;
   background-size: cover;
   color: white;
   position: relative;
@@ -18,7 +18,7 @@
 }
 
 .hero-overlay {
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.55);
   padding: 60px 20px;
   width: 100%;
   text-align: center;
@@ -30,42 +30,33 @@
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   margin-bottom: 20px;
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-bottom: 30px;
 }
 
-.btn, .btn-outline {
+.btn {
   padding: 12px 24px;
   text-decoration: none;
   border-radius: 6px;
   font-weight: bold;
   display: inline-block;
-}
-
-.btn {
   background-color: gold;
   color: black;
 }
 
-.btn-outline {
-  border: 2px solid white;
-  color: white;
-  margin-left: 10px;
-}
-
-.features, .categories, .cta {
+.features {
   padding: 60px 20px;
   text-align: center;
   max-width: 1200px;
   margin: auto;
 }
 
-.features h2, .categories h2, .cta h2 {
+.features h2 {
   font-size: 2rem;
   margin-bottom: 30px;
 }
@@ -75,22 +66,6 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
   text-align: left;
-}
-
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  text-align: center;
-}
-
-.category-grid img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.cta-buttons {
-  margin-top: 20px;
 }
 
 footer {
