@@ -15,31 +15,64 @@ export default function SponsorPage() {
   };
 
   return (
-    <div style={{ padding: "50px", fontFamily: "sans-serif", maxWidth: "900px", margin: "0 auto" }}>
-      <h1 style={{ textAlign: "center", marginBottom: "30px" }}>Become a LuxeCampUSA Sponsor</h1>
-      
-      <div style={{ display: "grid", gap: "30px" }}>
-        <div style={{ border: "2px solid #ccc", borderRadius: "12px", padding: "20px" }}>
-          <h2>🟩 Standard – $199/month</h2>
-          <p>Basic sponsor listing with logo, link, and contact info.</p>
-          <button onClick={() => redirectToCheckout("price_1REJsoIsMFIuFtfK6AdD46sh")} style={buttonStyle}>Choose Standard</button>
-        </div>
+    <div style={{ fontFamily: "serif", backgroundColor: "#fdfaf6", color: "#1a1a1a" }}>
+      <div style={{
+        backgroundImage: "url('/sponsor-hero.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "300px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "#fff",
+        textShadow: "0 0 10px rgba(0,0,0,0.7)"
+      }}>
+        <h1 style={{ fontSize: "3rem", fontWeight: "bold" }}>Partner with LuxeCampUSA</h1>
+      </div>
 
-        <div style={{ border: "2px solid #999", borderRadius: "12px", padding: "20px" }}>
-          <h2>🟨 Featured – $399/month</h2>
-          <p>Priority placement in state-level searches + all Standard benefits.</p>
-          <button onClick={() => redirectToCheckout("price_1REJtkIsMFIuFtfKaiRPWkNA")} style={buttonStyle}>Choose Featured</button>
-        </div>
+      <div style={{ padding: "60px 20px", maxWidth: "1000px", margin: "0 auto" }}>
+        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Sponsorship Tiers</h2>
+        <div style={{ display: "grid", gap: "40px" }}>
+          <div style={tierCardStyle}>
+            <h3>🟩 Standard – $199/month</h3>
+            <ul>
+              <li>📍 Listed in national directory</li>
+              <li>🔗 Logo, link & contact info</li>
+            </ul>
+            <button onClick={() => redirectToCheckout("price_1REJsoIsMFIuFtfK6AdD46sh")} style={buttonStyle}>Choose Standard</button>
+          </div>
 
-        <div style={{ border: "2px solid gold", borderRadius: "12px", padding: "20px" }}>
-          <h2>🟥 Premium – $699/month</h2>
-          <p>Homepage visibility + LuxeCamp Journal feature + all lower-tier perks.</p>
-          <button onClick={() => redirectToCheckout("price_1RFfOFIsMFIuFtfKRwHHs8d6")} style={buttonStyle}>Choose Premium</button>
+          <div style={{ ...tierCardStyle, borderColor: "#999" }}>
+            <h3>🟨 Featured – $399/month</h3>
+            <ul>
+              <li>⭐ All Standard benefits</li>
+              <li>🏅 Priority in state-level listings</li>
+            </ul>
+            <button onClick={() => redirectToCheckout("price_1REJtkIsMFIuFtfKaiRPWkNA")} style={buttonStyle}>Choose Featured</button>
+          </div>
+
+          <div style={{ ...tierCardStyle, borderColor: "gold" }}>
+            <h3>🟥 Premium – $699/month</h3>
+            <ul>
+              <li>🏆 All Featured benefits</li>
+              <li>🏕 Homepage visibility</li>
+              <li>📰 LuxeCamp Journal feature</li>
+            </ul>
+            <button onClick={() => redirectToCheckout("price_1RFfOFIsMFIuFtfKRwHHs8d6")} style={buttonStyle}>Choose Premium</button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+const tierCardStyle = {
+  border: "2px solid #ccc",
+  borderRadius: "12px",
+  padding: "20px",
+  backgroundColor: "#fff",
+  boxShadow: "0 0 10px rgba(0,0,0,0.05)"
+};
 
 const buttonStyle = {
   backgroundColor: "#000",
