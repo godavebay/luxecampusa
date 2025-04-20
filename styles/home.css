@@ -40,6 +40,36 @@ body {
   position: relative;
 }
 
+.intro-text {
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.intro-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.intro-text p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.btn {
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.yellow-btn {
+  background-color: gold;
+  color: black;
+}
+
 .features {
   padding: 100px 20px;
   text-align: center;

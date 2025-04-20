@@ -10,12 +10,19 @@ export default function Home() {
       <nav className="navbar">
         <div className="nav-content">
           <a href="#hero">Home</a>
+          <a href="#intro">Intro</a>
           <a href="#features">Features</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
       <div className="homepage">
         <section id="hero" className="hero"></section>
+
+        <section id="intro" className="intro-text">
+          <h1>Discover America’s Most Exclusive Campgrounds & Glamping Retreats</h1>
+          <p>Curated for luxury. Driven by experience. Built for adventure.</p>
+          <a href="#features" className="btn yellow-btn">Explore Listings</a>
+        </section>
 
         <section id="features" className="features">
           <h2>What Makes LuxeCampUSA Different?</h2>
