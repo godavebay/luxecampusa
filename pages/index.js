@@ -20,7 +20,7 @@ export default function Home() {
             <div className="hero-text">
               <h1>Discover America’s Most Exclusive Campgrounds & Glamping Retreats</h1>
               <p>Curated for luxury. Driven by experience. Built for adventure.</p>
-              <a href="#features" className="btn">Explore Listings</a>
+              <a href="#features" className="btn yellow-btn">Explore Listings</a>
             </div>
           </div>
         </section>

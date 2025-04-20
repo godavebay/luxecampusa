@@ -32,7 +32,7 @@ body {
 
 .hero {
   height: 100vh;
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1740&q=80');
+  background-image: url('/grand-cabin-hero.jpg');
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -78,6 +78,9 @@ body {
   border-radius: 6px;
   font-weight: bold;
   display: inline-block;
+}
+
+.yellow-btn {
   background-color: gold;
   color: black;
 }
