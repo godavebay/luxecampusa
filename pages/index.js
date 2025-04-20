@@ -16,7 +16,7 @@ export default function Home() {
       </nav>
       <div className="homepage">
         <section id="hero" className="hero">
-          <div className="scroll-banner">
+          <div className="floating-banner">
             <h1>Discover America’s Most Exclusive Campgrounds & Glamping Retreats</h1>
             <p>Curated for luxury. Driven by experience. Built for adventure.</p>
             <a href="#second" className="btn yellow-btn">Explore Listings</a>
@@ -24,19 +24,11 @@ export default function Home() {
         </section>
 
         <section id="second" className="scroll-section">
-          <div className="scroll-banner">
+          <div className="floating-banner">
             <h2>What Makes LuxeCampUSA Different?</h2>
             <p>Every site listed meets our standard for exceptional design, comfort, and experience.</p>
             <p>No middleman. Book directly with the camp or resort of your choice.</p>
             <p>We’re continuously adding new luxury properties, sponsors, and premium experiences.</p>
-          </div>
-        </section>
-
-        <section className="scroll-section">
-          <div className="scroll-banner">
-            <h2>Explore LuxeCampUSA</h2>
-            <p>Browse our growing collection of luxury RV resorts, mountaintop glampsites, and treehouse hideaways.</p>
-            <p>Plan your next unforgettable escape in nature — with all the comforts of home, and more.</p>
           </div>
         </section>
 
