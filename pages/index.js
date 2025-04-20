@@ -21,7 +21,11 @@ export default function Home() {
 
         <section className="features">
           <h2>What Makes LuxeCampUSA Different?</h2>
-          <img src="/feature-icons.png" alt="Verified Luxury Only, Direct Booking Access, Always Growing" className="features-image" />
+          <div className="feature-grid">
+            <div><h3>Verified Luxury Only</h3><p>Every site listed meets our standard for exceptional design, comfort, and experience.</p></div>
+            <div><h3>Direct Booking Access</h3><p>No middleman. Book directly with the camp or resort of your choice.</p></div>
+            <div><h3>Always Growing</h3><p>We’re continuously adding new luxury properties, sponsors, and premium experiences.</p></div>
+          </div>
         </section>
 
         <footer>

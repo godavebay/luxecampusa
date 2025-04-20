@@ -72,13 +72,11 @@
   margin-bottom: 30px;
 }
 
-.features-image {
-  max-width: 960px;
-  width: 100%;
-  height: auto;
-  margin-top: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  text-align: left;
 }
 
 footer {
