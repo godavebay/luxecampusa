@@ -42,6 +42,8 @@ body {
   justify-content: center;
 }
 .scroll-banner {
+  position: relative;
+  top: 40vh;
   background: rgba(0, 0, 0, 0.6);
   padding: 2rem;
   border-radius: 12px;
