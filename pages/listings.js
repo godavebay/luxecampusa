@@ -18,6 +18,7 @@ export default function Listings() {
     tier: "",
     amenities: []
   });
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     fetchListings();
@@ -67,58 +68,64 @@ export default function Listings() {
   const tiers = [...new Set(allListings.map(l => l.tier))].filter(Boolean);
 
   return (
-    <div style={{ display: "flex", fontFamily: "sans-serif" }}>
-      <aside style={{ width: "250px", padding: "20px", borderRight: "1px solid #ddd", background: "#f8f8f8" }}>
-        <h3>Search & Filters</h3>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
-        />
+    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", fontFamily: "sans-serif" }}>
+      <button onClick={() => setShowFilters(!showFilters)} style={{ margin: "10px", padding: "10px", background: "#0070f3", color: "#fff", border: "none", borderRadius: "6px", display: "block", width: "100%" }}>
+        {showFilters ? "Hide Filters" : "Show Filters"}
+      </button>
 
-        <label>State:</label>
-        <select value={filters.state} onChange={e => setFilters({ ...filters, state: e.target.value })} style={{ width: "100%", marginBottom: "10px" }}>
-          <option value="">All</option>
-          {states.map(state => <option key={state} value={state}>{state}</option>)}
-        </select>
+      {showFilters && (
+        <aside style={{ width: "100%", maxWidth: "300px", padding: "20px", borderRight: "1px solid #ddd", background: "#f8f8f8" }}>
+          <h3>Search & Filters</h3>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
+          />
 
-        <label>Region:</label>
-        <select value={filters.region} onChange={e => setFilters({ ...filters, region: e.target.value })} style={{ width: "100%", marginBottom: "10px" }}>
-          <option value="">All</option>
-          {regions.map(region => <option key={region} value={region}>{region}</option>)}
-        </select>
+          <label>State:</label>
+          <select value={filters.state} onChange={e => setFilters({ ...filters, state: e.target.value })} style={{ width: "100%", marginBottom: "10px" }}>
+            <option value="">All</option>
+            {states.map(state => <option key={state} value={state}>{state}</option>)}
+          </select>
 
-        <label>Tier:</label>
-        <select value={filters.tier} onChange={e => setFilters({ ...filters, tier: e.target.value })} style={{ width: "100%", marginBottom: "10px" }}>
-          <option value="">All</option>
-          {tiers.map(tier => <option key={tier} value={tier}>{tier}</option>)}
-        </select>
+          <label>Region:</label>
+          <select value={filters.region} onChange={e => setFilters({ ...filters, region: e.target.value })} style={{ width: "100%", marginBottom: "10px" }}>
+            <option value="">All</option>
+            {regions.map(region => <option key={region} value={region}>{region}</option>)}
+          </select>
 
-        <label>Amenities:</label>
-        <div style={{ display: "flex", flexDirection: "column", marginTop: "5px" }}>
-          {ALL_AMENITIES.map(amenity => (
-            <label key={amenity} style={{ fontSize: "14px" }}>
-              <input
-                type="checkbox"
-                checked={filters.amenities.includes(amenity)}
-                onChange={() => handleAmenityToggle(amenity)}
-              /> {amenity}
-            </label>
-          ))}
-        </div>
-      </aside>
+          <label>Tier:</label>
+          <select value={filters.tier} onChange={e => setFilters({ ...filters, tier: e.target.value })} style={{ width: "100%", marginBottom: "10px" }}>
+            <option value="">All</option>
+            {tiers.map(tier => <option key={tier} value={tier}>{tier}</option>)}
+          </select>
 
-      <main style={{ flexGrow: 1, padding: "40px" }}>
-        <h1>Explore LuxeCamp Listings</h1>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "30px" }}>
+          <label>Amenities:</label>
+          <div style={{ display: "flex", flexDirection: "column", marginTop: "5px" }}>
+            {ALL_AMENITIES.map(amenity => (
+              <label key={amenity} style={{ fontSize: "14px" }}>
+                <input
+                  type="checkbox"
+                  checked={filters.amenities.includes(amenity)}
+                  onChange={() => handleAmenityToggle(amenity)}
+                /> {amenity}
+              </label>
+            ))}
+          </div>
+        </aside>
+      )}
+
+      <main style={{ flexGrow: 1, padding: "20px", width: "100%" }}>
+        <h1 style={{ textAlign: "center" }}>Explore LuxeCamp Listings</h1>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "20px" }}>
           {filteredListings.map((listing, idx) => (
             <div key={idx} style={{ background: "#fff", borderRadius: "10px", overflow: "hidden", boxShadow: "0 0 10px rgba(0,0,0,0.1)" }}>
               {listing.image_urls?.[0] && (
                 <img src={listing.image_urls[0]} alt={listing.name} style={{ width: "100%", height: "200px", objectFit: "cover" }} />
               )}
-              <div style={{ padding: "20px" }}>
+              <div style={{ padding: "16px" }}>
                 <h2>{listing.name}</h2>
                 <p><strong>{listing.state}</strong> • {listing.region} • {listing.tier}</p>
                 <p>{listing.description}</p>
