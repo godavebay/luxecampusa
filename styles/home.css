@@ -27,18 +27,15 @@ body {
   font-weight: bold;
 }
 .hero {
-  height: 100vh;
+  min-height: 200vh;
   background-image: url('/grand-cabin-hero.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   position: relative;
-}
-.scroll-section {
-  min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
 }
 .floating-banner {
@@ -48,9 +45,7 @@ body {
   color: white;
   text-align: center;
   max-width: 90%;
-  position: relative;
-  top: 40vh;
-  margin: 0 auto;
+  margin: 100px auto;
 }
 .btn {
   padding: 12px 24px;
