@@ -32,6 +32,14 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="scroll-section">
+          <div className="scroll-banner">
+            <h2>Explore LuxeCampUSA</h2>
+            <p>Browse our growing collection of luxury RV resorts, mountaintop glampsites, and treehouse hideaways.</p>
+            <p>Plan your next unforgettable escape in nature — with all the comforts of home, and more.</p>
+          </div>
+        </section>
+
         <footer id="contact">
           <p>&copy; {new Date().getFullYear()} LuxeCampUSA. All rights reserved.</p>
           <p>info@luxecampusa.com</p>
