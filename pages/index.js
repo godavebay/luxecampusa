@@ -15,20 +15,12 @@ export default function Home() {
         </div>
       </nav>
       <div className="homepage">
-        
-<section id="hero" className="hero">
-  <div className="floating-banner">
-    <h1>Discover America’s Most Exclusive Campgrounds & Glamping Retreats</h1>
-    <p>Curated for luxury. Driven by experience. Built for adventure.</p>
-    <a href="#features" className="btn yellow-btn">Explore Listings</a>
-  </div>
-</section>
-
-
-        <section id="about" className="intro-text">
-          <h1>Discover America’s Most Exclusive Campgrounds & Glamping Retreats</h1>
-          <p>Curated for luxury. Driven by experience. Built for adventure.</p>
-          <a href="#features" className="btn yellow-btn">Explore Listings</a>
+        <section id="hero" className="hero">
+          <div className="floating-banner">
+            <h1>Discover America’s Most Exclusive Campgrounds & Glamping Retreats</h1>
+            <p>Curated for luxury. Driven by experience. Built for adventure.</p>
+            <a href="#features" className="btn yellow-btn">Explore Listings</a>
+          </div>
         </section>
 
         <section id="features" className="features">
