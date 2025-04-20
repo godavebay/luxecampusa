@@ -28,6 +28,13 @@ export default function Home() {
             <p>No middleman. Book directly with the camp or resort of your choice.</p>
             <p>We’re continuously adding new luxury properties, sponsors, and premium experiences.</p>
           </div>
+        
+          <div className="floating-banner third">
+            <h2>Properties We Feature</h2>
+            <p>🌲 Luxury RV Resorts</p>
+            <p>🏕️ Glamping Retreats</p>
+            <p>🌄 Treehouse + Tiny Home Escapes</p>
+          </div>
         </section>
 
         <footer id="contact">
