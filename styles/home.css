@@ -32,11 +32,12 @@ body {
 
 .hero {
   height: 100vh;
+  width: 100%;
   background-image: url('/grand-cabin-hero.jpg');
-  background-attachment: fixed;
-  background-position: center;
+  background-size: contain;
+  background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #000;
   position: relative;
 }
 
