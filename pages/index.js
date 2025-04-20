@@ -16,7 +16,7 @@ export default function Home() {
       </nav>
       <div className="homepage">
         <section id="hero" className="hero">
-          <div className="floating-banner">
+          <div className="floating-banner first">
             <h1>Discover America’s Most Exclusive Campgrounds & Glamping Retreats</h1>
             <p>Curated for luxury. Driven by experience. Built for adventure.</p>
             <a href="#features" className="btn yellow-btn">Explore Listings</a>
