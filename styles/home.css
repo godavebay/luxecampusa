@@ -10,15 +10,23 @@
   background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1740&q=80') no-repeat center center;
   background-size: cover;
   color: white;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.65);
+  padding: 60px 20px;
+  width: 100%;
   text-align: center;
-  padding: 120px 20px;
 }
 
 .hero-text {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 40px;
-  display: inline-block;
-  border-radius: 12px;
+  max-width: 720px;
+  margin: auto;
 }
 
 .hero h1 {
