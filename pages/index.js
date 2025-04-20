@@ -7,19 +7,25 @@ export default function Home() {
       <Head>
         <title>LuxeCampUSA</title>
       </Head>
+      <nav className="navbar">
+        <div className="nav-content">
+          <a href="#hero">Home</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
       <div className="homepage">
-
-        <section className="hero">
+        <section id="hero" className="hero">
           <div className="hero-overlay">
             <div className="hero-text">
               <h1>Discover America’s Most Exclusive Campgrounds & Glamping Retreats</h1>
               <p>Curated for luxury. Driven by experience. Built for adventure.</p>
-              <a href="/listings" className="btn">Explore Listings</a>
+              <a href="#features" className="btn">Explore Listings</a>
             </div>
           </div>
         </section>
 
-        <section className="features">
+        <section id="features" className="features">
           <h2>What Makes LuxeCampUSA Different?</h2>
           <div className="feature-grid">
             <div><h3>Verified Luxury Only</h3><p>Every site listed meets our standard for exceptional design, comfort, and experience.</p></div>
@@ -28,7 +34,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer>
+        <footer id="contact">
           <p>&copy; {new Date().getFullYear()} LuxeCampUSA. All rights reserved.</p>
           <p>info@luxecampusa.com</p>
         </footer>
