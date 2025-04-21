@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { supabase } from "@/utils/supabase";
-import ReviewAdminPanel from "@/admin/ReviewAdminPanel";
+import { supabase } from "../../frontend/utils/supabase";
+import ReviewAdminPanel from "../../admin/ReviewAdminPanel";
 
 export default function ReviewsAdminPage() {
   const [allReviews, setAllReviews] = useState([]);
