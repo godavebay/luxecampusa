@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper';
+import { Navigation, Autoplay } from 'swiper'; // corrected here
 import 'swiper/css';
 import 'swiper/css/navigation';
 
