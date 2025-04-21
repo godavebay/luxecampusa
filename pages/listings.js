@@ -33,22 +33,24 @@ export default function Listings() {
     }
   ];
 
+  const uniqueStates = [...new Set(listings.map(l => l.state))];
+  const uniqueRegions = [...new Set(listings.map(l => l.region))];
+  const uniqueAmenities = [...new Set(listings.flatMap(l => l.amenities))];
+
   const [filters, setFilters] = useState({
     state: '',
     region: '',
-    amenities: '',
+    amenity: '',
     tier: 'All'
   });
 
   const applyFilters = (listings) => {
     return listings.filter(item => {
-      const matchesState = filters.state === '' || item.state.toLowerCase().includes(filters.state.toLowerCase());
-      const matchesRegion = filters.region === '' || item.region.toLowerCase().includes(filters.region.toLowerCase());
-      const matchesAmenities = filters.amenities === '' || filters.amenities.split(',').every(a =>
-        item.amenities.join(',').toLowerCase().includes(a.trim().toLowerCase())
-      );
+      const matchesState = filters.state === '' || item.state === filters.state;
+      const matchesRegion = filters.region === '' || item.region === filters.region;
+      const matchesAmenity = filters.amenity === '' || item.amenities.includes(filters.amenity);
       const matchesTier = filters.tier === 'All' || item.tier === filters.tier;
-      return matchesState && matchesRegion && matchesAmenities && matchesTier;
+      return matchesState && matchesRegion && matchesAmenity && matchesTier;
     });
   };
 
@@ -62,12 +64,25 @@ export default function Listings() {
       <div className="listings-container">
         <aside className="filter-sidebar">
           <h3>Filter Listings</h3>
+
           <label>State</label>
-          <input type="text" placeholder="e.g. WY" value={filters.state} onChange={e => setFilters({ ...filters, state: e.target.value })} />
+          <select value={filters.state} onChange={e => setFilters({ ...filters, state: e.target.value })}>
+            <option value="">All</option>
+            {uniqueStates.map((s, i) => <option key={i} value={s}>{s}</option>)}
+          </select>
+
           <label>Region</label>
-          <input type="text" placeholder="e.g. West" value={filters.region} onChange={e => setFilters({ ...filters, region: e.target.value })} />
-          <label>Amenities</label>
-          <input type="text" placeholder="e.g. Pool, WiFi" value={filters.amenities} onChange={e => setFilters({ ...filters, amenities: e.target.value })} />
+          <select value={filters.region} onChange={e => setFilters({ ...filters, region: e.target.value })}>
+            <option value="">All</option>
+            {uniqueRegions.map((r, i) => <option key={i} value={r}>{r}</option>)}
+          </select>
+
+          <label>Amenity</label>
+          <select value={filters.amenity} onChange={e => setFilters({ ...filters, amenity: e.target.value })}>
+            <option value="">All</option>
+            {uniqueAmenities.map((a, i) => <option key={i} value={a}>{a}</option>)}
+          </select>
+
           <label>Tier</label>
           <select value={filters.tier} onChange={e => setFilters({ ...filters, tier: e.target.value })}>
             <option>All</option>
@@ -76,6 +91,7 @@ export default function Listings() {
             <option>Standard</option>
           </select>
         </aside>
+
         <main className="listing-grid">
           {filteredListings.map((item, i) => (
             <div className="listing-card" key={i}>
