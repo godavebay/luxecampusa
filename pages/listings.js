@@ -1,1 +1,8 @@
-// listings page using react-leaflet@4.2.1 and clustering
+export default function ListingsPage() {
+  return (
+    <div>
+      <h1>Listings Page</h1>
+      {/* Your actual listings content */}
+    </div>
+  );
+}
