@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { createClient } from '@supabase/supabase-js';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Thumbs } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/thumbs';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -16,6 +18,8 @@ export default function ListingDetail() {
   const { slug } = router.query;
   const [data, setData] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [lightboxImage, setLightboxImage] = useState(null);
 
   useEffect(() => {
     if (!slug) return;
@@ -48,20 +52,32 @@ export default function ListingDetail() {
       </Head>
       <div className="detail-container">
         <div className="carousel-container">
-          <Swiper spaceBetween={10} slidesPerView={1}>
-            {images.length > 0 ? (
-              images.map((url, index) => (
-                <SwiperSlide key={index}>
-                  <img className="detail-hero" src={url} alt={`Image ${index + 1}`} />
-                </SwiperSlide>
-              ))
-            ) : (
-              <SwiperSlide>
-                <img className="detail-hero" src="/fallback.jpg" alt="Fallback" />
+          <Swiper
+            spaceBetween={10}
+            slidesPerView={1}
+            thumbs={{ swiper: thumbsSwiper }}
+          >
+            {(images.length > 0 ? images : ["/fallback.jpg"]).map((url, index) => (
+              <SwiperSlide key={index}>
+                <img className="detail-hero" src={url} alt={`Image ${index + 1}`} onClick={() => setLightboxImage(url)} />
               </SwiperSlide>
-            )}
+            ))}
+          </Swiper>
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            spaceBetween={10}
+            slidesPerView={5}
+            watchSlidesProgress
+            className="thumbs"
+          >
+            {(images.length > 0 ? images : ["/fallback.jpg"]).map((url, index) => (
+              <SwiperSlide key={index}>
+                <img className="thumb" src={url} alt={`Thumb ${index + 1}`} />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
+
         <div className="detail-content">
           <h1>{data.name || "Unnamed Listing"}</h1>
           <h3>{data.location || "Unknown Location"} • <span className="tier-badge">{data.tier || "Standard"}</span></h3>
@@ -79,6 +95,12 @@ export default function ListingDetail() {
           )}
         </div>
       </div>
+
+      {lightboxImage && (
+        <div className="lightbox" onClick={() => setLightboxImage(null)}>
+          <img src={lightboxImage} alt="Zoom" />
+        </div>
+      )}
     </>
   );
 }
