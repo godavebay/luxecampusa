@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -36,7 +36,7 @@ export default function PremiumSponsorCarousel() {
         💎 Premium Sponsors
       </h2>
       <Swiper
-        modules={[Autoplay, Navigation]}
+        modules={[Navigation, Autoplay]}
         spaceBetween={30}
         slidesPerView={1}
         autoplay={{ delay: 3000 }}
