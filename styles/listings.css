@@ -9,19 +9,33 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
-.filters select {
+.filters input, .filters select {
   padding: 0.6rem 1rem;
   background: #222;
   color: #fff;
   border: 1px solid #444;
   border-radius: 6px;
 }
+.amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.amenities label {
+  display: flex;
+  align-items: center;
+  background: #222;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  margin-top: 2rem;
 }
 .card-link {
   text-decoration: none;
@@ -72,4 +86,7 @@
 .badge.premium {
   background: gold;
   color: #000;
+}
+.map-container {
+  margin-top: 2rem;
 }

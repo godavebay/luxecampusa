@@ -1,7 +1,13 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { createClient } from '@supabase/supabase-js';
+
+const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false });
+const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
+const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ssr: false });
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -13,8 +19,11 @@ export default function Listings() {
   const [filtered, setFiltered] = useState([]);
   const [tiers, setTiers] = useState([]);
   const [states, setStates] = useState([]);
+  const [amenities, setAmenities] = useState([]);
   const [selectedTier, setSelectedTier] = useState('');
   const [selectedState, setSelectedState] = useState('');
+  const [selectedAmenities, setSelectedAmenities] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('tier');
 
   useEffect(() => {
@@ -26,8 +35,12 @@ export default function Listings() {
 
         const uniqueTiers = [...new Set(data.map(item => item.tier))];
         const uniqueStates = [...new Set(data.map(item => item.location))];
+        const allAmenities = [...new Set(data.flatMap(item =>
+          Array.isArray(item.amenities) ? item.amenities : (item.amenities || "").split(',').map(a => a.trim())
+        ))];
         setTiers(uniqueTiers);
         setStates(uniqueStates);
+        setAmenities(allAmenities);
       }
     };
     fetchListings();
@@ -37,6 +50,17 @@ export default function Listings() {
     let result = [...listings];
     if (selectedTier) result = result.filter(l => l.tier === selectedTier);
     if (selectedState) result = result.filter(l => l.location === selectedState);
+    if (selectedAmenities.length > 0) {
+      result = result.filter(l =>
+        selectedAmenities.every(amenity =>
+          (Array.isArray(l.amenities) ? l.amenities : (l.amenities || "").split(',').map(a => a.trim())).includes(amenity)
+        )
+      );
+    }
+    if (searchTerm) {
+      const term = searchTerm.toLowerCase();
+      result = result.filter(l => l.name.toLowerCase().includes(term) || l.location.toLowerCase().includes(term));
+    }
     if (sortOrder === 'tier') {
       const priority = { Premium: 1, Featured: 2, Standard: 3 };
       result.sort((a, b) => priority[a.tier] - priority[b.tier]);
@@ -46,12 +70,19 @@ export default function Listings() {
       result.sort((a, b) => b.name.localeCompare(a.name));
     }
     setFiltered(result);
-  }, [selectedTier, selectedState, sortOrder, listings]);
+  }, [selectedTier, selectedState, selectedAmenities, sortOrder, searchTerm, listings]);
+
+  const toggleAmenity = (amenity) => {
+    setSelectedAmenities(prev =>
+      prev.includes(amenity) ? prev.filter(a => a !== amenity) : [...prev, amenity]
+    );
+  };
 
   return (
     <div className="listings-page">
       <h1>Explore LuxeCamp Listings</h1>
       <div className="filters">
+        <input type="text" placeholder="Search by name or location" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
         <select value={selectedTier} onChange={e => setSelectedTier(e.target.value)}>
           <option value="">All Tiers</option>
           {tiers.map(tier => (
@@ -70,6 +101,18 @@ export default function Listings() {
           <option value="za">Z–A</option>
         </select>
       </div>
+      <div className="amenities">
+        {amenities.map(amenity => (
+          <label key={amenity}>
+            <input
+              type="checkbox"
+              checked={selectedAmenities.includes(amenity)}
+              onChange={() => toggleAmenity(amenity)}
+            />
+            {amenity}
+          </label>
+        ))}
+      </div>
       <div className="grid">
         {filtered.map((listing) => (
           <Link key={listing.id} href={`/listing/${listing.slug}`} className="card-link">
@@ -83,6 +126,21 @@ export default function Listings() {
             </div>
           </Link>
         ))}
+      </div>
+      <div className="map-container">
+        <MapContainer center={[39.5, -98.35]} zoom={4} scrollWheelZoom={false} style={{ height: "400px", width: "100%" }}>
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          {filtered.map((listing, idx) =>
+            listing.latitude && listing.longitude ? (
+              <Marker key={idx} position={[listing.latitude, listing.longitude]}>
+                <Popup>
+                  <strong>{listing.name}</strong><br />
+                  {listing.location}
+                </Popup>
+              </Marker>
+            ) : null
+          )}
+        </MapContainer>
       </div>
     </div>
   );
