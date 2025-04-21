@@ -1,3 +1,4 @@
+// Connected to Supabase ✅
 
 import Head from 'next/head';
 import { useState } from 'react';
