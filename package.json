@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
+    "leaflet": "^1.9.4",
     "next": "13.4.12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-leaflet": "^5.0.0",
     "stripe": "^18.0.0",
     "swiper": "^11.2.6"
   }
