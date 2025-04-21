@@ -22,7 +22,9 @@ export default function GalleryViewer({ images }: GalleryViewerProps) {
             key={index}
             src={src}
             alt={`Thumbnail ${index + 1}`}
-            className={\`h-16 w-24 object-cover rounded cursor-pointer border \${selectedIndex === index ? 'border-blue-500' : 'border-transparent'}\`}
+            className={`h-16 w-24 object-cover rounded cursor-pointer border ${
+              selectedIndex === index ? 'border-blue-500' : 'border-transparent'
+            }`}
             onClick={() => setSelectedIndex(index)}
           />
         ))}
