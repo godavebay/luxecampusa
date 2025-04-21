@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { createClient } from '@supabase/supabase-js';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Thumbs } from 'swiper/modules';
+import { Thumbs, Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/thumbs';
+import 'swiper/css/navigation';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -33,7 +34,6 @@ export default function ListingDetail() {
         console.error("Supabase Error:", error.message);
         setErrorMsg("Listing not found or failed to load.");
       } else {
-        console.log("Supabase Data:", data);
         setData(data);
       }
     };
@@ -55,7 +55,11 @@ export default function ListingDetail() {
           <Swiper
             spaceBetween={10}
             slidesPerView={1}
+            navigation={true}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
             thumbs={{ swiper: thumbsSwiper }}
+            speed={800}
+            modules={[Thumbs, Navigation, Autoplay]}
           >
             {(images.length > 0 ? images : ["/fallback.jpg"]).map((url, index) => (
               <SwiperSlide key={index}>
@@ -69,6 +73,7 @@ export default function ListingDetail() {
             slidesPerView={5}
             watchSlidesProgress
             className="thumbs"
+            modules={[Thumbs]}
           >
             {(images.length > 0 ? images : ["/fallback.jpg"]).map((url, index) => (
               <SwiperSlide key={index}>
