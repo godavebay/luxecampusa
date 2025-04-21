@@ -1,23 +1,29 @@
-import { useEffect, useRef } from "react";
-
-// This component assumes Mapbox or Leaflet setup externally.
-// Replace with real map SDK later for interactive clustering.
+import { useEffect } from "react";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 interface MapViewProps {
   coordinates: { lat: number; lng: number; title: string }[];
 }
 
 export default function MapView({ coordinates }: MapViewProps) {
-  const mapRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    // Placeholder for real map SDK initialization
-    console.log("Map would initialize here with coordinates:", coordinates);
+    const map = L.map("map-container").setView([38.5, -84.1], 6);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; OpenStreetMap contributors',
+    }).addTo(map);
+
+    coordinates.forEach(({ lat, lng, title }) => {
+      const marker = L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(`<strong>${title}</strong>`);
+    });
+
+    return () => map.remove(); // Cleanup
   }, [coordinates]);
 
   return (
-    <div className="w-full h-[500px] bg-gray-200 rounded shadow flex items-center justify-center text-gray-600" ref={mapRef}>
-      <p className="text-lg">Map Placeholder (Integrate Mapbox or Leaflet here)</p>
-    </div>
+    <div id="map-container" className="w-full h-[500px] rounded shadow" />
   );
 }
