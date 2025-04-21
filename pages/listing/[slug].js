@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { createClient } from '@supabase/supabase-js';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -37,17 +39,29 @@ export default function ListingDetail() {
   if (errorMsg) return <div style={{ color: 'white', padding: '2rem' }}>{errorMsg}</div>;
   if (!data) return <div style={{ color: 'white', padding: '2rem' }}>Loading listing...</div>;
 
+  const images = Array.isArray(data.image_urls) ? data.image_urls : [];
+
   return (
     <>
       <Head>
         <title>{data.name || "LuxeCampUSA Listing"}</title>
       </Head>
       <div className="detail-container">
-        <img
-          className="detail-hero"
-          src={(data.image_urls && data.image_urls[0]) || '/fallback.jpg'}
-          alt={data.name || "Listing image"}
-        />
+        <div className="carousel-container">
+          <Swiper spaceBetween={10} slidesPerView={1}>
+            {images.length > 0 ? (
+              images.map((url, index) => (
+                <SwiperSlide key={index}>
+                  <img className="detail-hero" src={url} alt={`Image ${index + 1}`} />
+                </SwiperSlide>
+              ))
+            ) : (
+              <SwiperSlide>
+                <img className="detail-hero" src="/fallback.jpg" alt="Fallback" />
+              </SwiperSlide>
+            )}
+          </Swiper>
+        </div>
         <div className="detail-content">
           <h1>{data.name || "Unnamed Listing"}</h1>
           <h3>{data.location || "Unknown Location"} • <span className="tier-badge">{data.tier || "Standard"}</span></h3>
