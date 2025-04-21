@@ -6,9 +6,10 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
+const tierOrder = { Premium: 1, Featured: 2, Standard: 3 };
+
 export default function SponsorsPage() {
   const [sponsors, setSponsors] = useState([]);
-  const [filtered, setFiltered] = useState([]);
   const [tier, setTier] = useState("All");
 
   useEffect(() => {
@@ -17,25 +18,23 @@ export default function SponsorsPage() {
         .from('sponsors')
         .select('*')
         .eq('approved', true);
-      if (!error) {
-        setSponsors(data);
-        setFiltered(data);
+      if (!error && data) {
+        const sorted = [...data].sort(
+          (a, b) => (tierOrder[a.tier] || 99) - (tierOrder[b.tier] || 99)
+        );
+        setSponsors(sorted);
       }
     };
     fetchSponsors();
   }, []);
 
-  useEffect(() => {
-    if (tier === "All") {
-      setFiltered(sponsors);
-    } else {
-      setFiltered(sponsors.filter(s => s.tier === tier));
-    }
-  }, [tier, sponsors]);
+  const filtered = tier === "All" ? sponsors : sponsors.filter(s => s.tier === tier);
 
   return (
-    <div style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: '1100px', margin: '0 auto' }}>
-      <h1 style={{ fontSize: '2rem', marginBottom: '1.5rem', textAlign: 'center' }}>LuxeCampUSA Sponsors</h1>
+    <div style={{ padding: '2rem', maxWidth: '1100px', margin: '0 auto' }}>
+      <h1 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '1.5rem' }}>
+        LuxeCampUSA Sponsors
+      </h1>
 
       <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
         <select value={tier} onChange={(e) => setTier(e.target.value)} style={{
@@ -58,8 +57,8 @@ export default function SponsorsPage() {
             borderRadius: '12px',
             overflow: 'hidden',
             boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-            transition: 'transform 0.3s, box-shadow 0.3s',
-            backgroundColor: '#fff'
+            backgroundColor: '#fff',
+            transition: 'transform 0.3s, box-shadow 0.3s'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'scale(1.02)';
