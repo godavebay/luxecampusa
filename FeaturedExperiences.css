@@ -1,0 +1,33 @@
+
+.featured-experiences {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+}
+.experience-card {
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 30%;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+.experience-card:hover {
+  transform: translateY(-5px);
+}
+.experience-card img {
+  width: 100%;
+  height: auto;
+}
+.experience-card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 0.5rem 1rem;
+  background-color: #ffcc00;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+}
