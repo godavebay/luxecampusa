@@ -1,0 +1,1 @@
+// Sample Sponsor Card Component
