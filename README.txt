@@ -1,1 +1,6 @@
-LuxeCampUSA: Favorites feature added (heart toggle, animation, tooltip, Supabase linked)
+LuxeCampUSA: Reviews & Ratings system implemented.
+- Star rating input
+- Comment field
+- Supabase-backed table
+- Display average ratings
+- User-only submission logic
