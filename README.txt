@@ -1,1 +1,1 @@
-This archive represents the latest version of the LuxeCampUSA project after Stripe fix.
+LuxeCampUSA: Favorites feature added (heart toggle, animation, tooltip, Supabase linked)
